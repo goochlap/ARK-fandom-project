@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import Route from '@/utils/route.interface';
+import errorHandler from '@/middleware/error';
 
 config();
 
@@ -17,25 +18,30 @@ class App {
     this.express = express();
     this.port = port;
 
-    this.initialiseMiddleware();
-    this.initialiseDatabase();
-    this.inistialiseRoutes(routes);
+    this.initializeMiddleware();
+    this.initializeDatabase();
+    this.initializeRoutes(routes);
+    this.initializeErrorHandling();
   }
 
-  private inistialiseRoutes(routes: Route[]): void {
+  private initializeRoutes(routes: Route[]): void {
     routes.forEach((route: Route) => {
       this.express.use('/api', route.router);
     });
   }
 
-  private initialiseMiddleware(): void {
+  private initializeMiddleware(): void {
     this.express.use(morgan('dev'));
     this.express.use(express.json());
     this.express.use(express.urlencoded({ extended: false }));
     this.express.use(cors());
   }
 
-  private async initialiseDatabase(): Promise<void> {
+  private initializeErrorHandling(): void {
+    this.express.use(errorHandler);
+  }
+
+  private async initializeDatabase(): Promise<void> {
     const { MONGODB_URI, MONGODB_DB_NAME } = process.env;
 
     try {
