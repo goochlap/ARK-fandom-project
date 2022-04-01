@@ -5,6 +5,7 @@ import logger from '@/middleware/logger';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import Route from '@/utils/route.interface';
 
 config();
 
@@ -12,12 +13,19 @@ class App {
   public express: Application;
   public port: number;
 
-  constructor(port: number) {
+  constructor(port: number, routes: Route[]) {
     this.express = express();
     this.port = port;
 
     this.initialiseMiddleware();
     this.initialiseDatabase();
+    this.inistialiseRoutes(routes);
+  }
+
+  private inistialiseRoutes(routes: Route[]): void {
+    routes.forEach((route: Route) => {
+      this.express.use('/api', route.router);
+    });
   }
 
   private initialiseMiddleware(): void {
