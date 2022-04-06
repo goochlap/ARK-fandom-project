@@ -20,7 +20,7 @@ const dropDatabase = async (): Promise<void> => {
     await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
 
-    logger.info(`Db cleaned & droped!`);
+    logger.info(`Db droped & closed!`);
   } catch (err) {
     throw err;
   }

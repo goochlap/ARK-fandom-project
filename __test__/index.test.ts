@@ -15,7 +15,7 @@ afterAll(() => {
   dropDatabase();
 });
 
-describe('Sample Test', () => {
+describe('API Test', () => {
   it('Should return 200 status code', async () => {
     const res = await request(api).get('/check');
 

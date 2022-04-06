@@ -7,8 +7,8 @@
     "start": "node dist/index.js",
     "dev": "tsc-watch --onSuccess \"node ./dist/index.js\"",
     "postinstall": "rm -rf dist",
-    "build": "npm run postinstall && tsc",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=10000"
+    "build": "npm run postinstall && tsc && tsc-alias",
+    "test": "cross-env NODE_ENV=test PORT=4000 start-server-and-test start 4000/api/check jest"
   },
   "author": "",
   "license": "ISC",
@@ -28,8 +28,10 @@
     "eslint-config-prettier": "^8.5.0",
     "jest": "^27.5.1",
     "prettier": "^2.6.1",
+    "start-server-and-test": "^1.14.0",
     "supertest": "^6.2.2",
     "ts-jest": "^27.1.4",
+    "tsc-alias": "^1.6.5",
     "tsc-watch": "^4.6.2",
     "typescript": "^4.6.3"
   },
@@ -46,6 +48,7 @@
   "_moduleAliases": {
     "@/resources": "dist/resources",
     "@/utils": "dist/utils",
-    "@/middleware": "dist/middleware"
+    "@/middleware": "dist/middleware",
+    "@/db": "dist/db"
   }
 }
