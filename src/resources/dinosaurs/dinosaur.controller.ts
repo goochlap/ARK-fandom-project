@@ -87,7 +87,7 @@ export const deleteDinosaur = async (
       );
     }
 
-    res.status(204);
+    res.status(204).json({ success: true });
   } catch (error) {
     next(error);
   }

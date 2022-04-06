@@ -1,42 +1,67 @@
 import request from 'supertest';
 import api from '../utils/api';
 import Dinosaur from '../../src/resources/dinosaurs/dinosaur.interface';
-import { Types } from 'mongoose';
+import { DinosaurTest } from '../data/dinosaurs';
 
 describe('Dinosaur controller flow', () => {
-  it('Should return all dinosaurs', async () => {
-    const response = await request(api).get('/dinosaurs');
+  let dinosaurTest: Dinosaur = new DinosaurTest('Diplodocus');
 
-    expect(response.status).toEqual(200);
-  });
-});
-
-describe('Dinosaur controller flow', () => {
   it('Should create a Dinosaur', async () => {
-    const dinosaur: Dinosaur = {
-      name: 'Diplo',
-      description: 'lorem ipsum',
-      diet: 'Herbivore',
-      temperament: 'naive',
-      tameable: true,
-      rideable: true,
-      appearance: 'image/diplo.png',
-      user: new Types.ObjectId(),
-    };
-
     const response = await request(api)
       .post('/dinosaurs')
-      .send(dinosaur)
+      .send(dinosaurTest)
       .expect('Content-Type', /json/)
       .expect(201);
 
-    expect(response.body.data.name).toEqual(dinosaur.name);
-    expect(response.body.data.description).toEqual(dinosaur.description);
-    expect(response.body.data.diet).toEqual(dinosaur.diet);
-    expect(response.body.data.temperament).toEqual(dinosaur.temperament);
-    expect(response.body.data.tameable).toEqual(dinosaur.tameable);
-    expect(response.body.data.rideable).toEqual(dinosaur.rideable);
-    expect(response.body.data.appearance).toEqual(dinosaur.appearance);
-    expect(response.body.data.user).toEqual(dinosaur.user.toString());
+    const dinosaurCreated = response.body.data;
+
+    expect(dinosaurCreated.name).toEqual(dinosaurTest.name);
+    expect(dinosaurCreated.description).toEqual(dinosaurTest.description);
+    expect(dinosaurCreated.diet).toEqual(dinosaurTest.diet);
+    expect(dinosaurCreated.temperament).toEqual(dinosaurTest.temperament);
+    expect(dinosaurCreated.tameable).toEqual(dinosaurTest.tameable);
+    expect(dinosaurCreated.rideable).toEqual(dinosaurTest.rideable);
+    expect(dinosaurCreated.appearance).toEqual(dinosaurTest.appearance);
+    expect(dinosaurCreated.user).toEqual(dinosaurTest.user.toString());
+
+    dinosaurTest = dinosaurCreated;
+  });
+
+  it('Should get all dinosaurs', async () => {
+    const response = await request(api).get('/dinosaurs');
+
+    expect(response.status).toEqual(200);
+    expect(response.body.success).toEqual(true);
+  });
+
+  it('Should get a dinosaur by ID', async () => {
+    const response = await request(api).get(`/dinosaurs/${dinosaurTest._id}`);
+
+    expect(response.status).toEqual(200);
+    expect(response.body.success).toEqual(true);
+    expect(response.body.data._id).toEqual(dinosaurTest._id);
+  });
+
+  it('Should update a dinosaur by ID', async () => {
+    dinosaurTest.name = 'Diplodocus updated';
+
+    const response = await request(api)
+      .put(`/dinosaurs/${dinosaurTest._id}`)
+      .send(dinosaurTest);
+
+    expect(response.status).toEqual(200);
+    expect(response.body.success).toEqual(true);
+    expect(response.body.data._id).toEqual(dinosaurTest._id);
+    expect(response.body.data.name).toEqual('Diplodocus updated');
+
+    dinosaurTest = response.body.data;
+  });
+
+  it('Should delete a dinosaur by ID', async () => {
+    const response = await request(api).delete(
+      `/dinosaurs/${dinosaurTest._id}`
+    );
+
+    expect(response.status).toEqual(204);
   });
 });
