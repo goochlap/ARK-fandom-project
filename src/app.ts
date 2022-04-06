@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import Route from '@/utils/route.interface';
 import errorHandler from '@/middleware/error';
+import mongoDbInfos from './db/url';
 
 config();
 
@@ -42,11 +43,11 @@ class App {
   }
 
   private async initializeDatabase(): Promise<void> {
-    const { MONGODB_URI, MONGODB_DB_NAME } = process.env;
+    const { url, dbName } = mongoDbInfos();
 
     try {
-      const connect = await mongoose.connect(`${MONGODB_URI}`, {
-        dbName: MONGODB_DB_NAME,
+      const connect = await mongoose.connect(`${url}`, {
+        dbName,
       });
 
       logger.info(`MongoDB connected: ${connect.connection.name}`);

@@ -4,23 +4,35 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/index.js",
     "dev": "tsc-watch --onSuccess \"node ./dist/index.js\"",
     "postinstall": "rm -rf dist",
-    "build": "npm run postinstall && tsc"
+    "build": "npm run postinstall && tsc && tsc-alias",
+    "start:test": "jest --verbose",
+    "test": "cross-env NODE_ENV=test PORT=4000 start-server-and-test start 4000/api/check start:test"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.1",
     "@types/node": "^17.0.23",
+    "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
+    "jest": "^27.5.1",
     "prettier": "^2.6.1",
+    "start-server-and-test": "^1.14.0",
+    "supertest": "^6.2.2",
+    "ts-jest": "^27.1.4",
+    "tsc-alias": "^1.6.5",
     "tsc-watch": "^4.6.2",
     "typescript": "^4.6.3"
   },
@@ -37,6 +49,7 @@
   "_moduleAliases": {
     "@/resources": "dist/resources",
     "@/utils": "dist/utils",
-    "@/middleware": "dist/middleware"
+    "@/middleware": "dist/middleware",
+    "@/db": "dist/db"
   }
 }

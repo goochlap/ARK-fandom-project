@@ -1,4 +1,6 @@
 {
+  "include": ["./src/**/*"],
+  "exclude": ["./test/**/*"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
@@ -31,7 +33,8 @@
     "paths": {
       "@/resources/*": ["resources/*"],
       "@/utils/*": ["utils/*"],
-      "@/middleware/*": ["middleware/*"]
+      "@/middleware/*": ["middleware/*"],
+      "@/db/*": ["db/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */

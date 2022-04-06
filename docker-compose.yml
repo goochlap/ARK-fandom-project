@@ -9,3 +9,9 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
+
+  mongodb_test:
+    image: mongo:4.2
+    container_name: mongodb-ark-test
+    ports:
+      - '27018:27017'
