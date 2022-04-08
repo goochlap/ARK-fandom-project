@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import Route from '@/utils/route.interface';
 
-import { register } from '@/resources/users/user.controller';
+import { register, login } from '@/resources/users/user.controller';
 
 class UserRoute implements Route {
   public path = '/users';
@@ -12,7 +12,8 @@ class UserRoute implements Route {
   }
 
   private initialiseRoutes(): void {
-    this.router.route(`${this.path}`).post(register);
+    this.router.route(`${this.path}/register`).post(register);
+    this.router.route(`${this.path}/login`).post(login);
   }
 }
 
