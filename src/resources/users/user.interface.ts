@@ -11,4 +11,5 @@ export default interface User {
   createdAt: Date;
 
   matchPassword(password: string): Promise<Error | boolean>;
+  signWithToken(): string;
 }

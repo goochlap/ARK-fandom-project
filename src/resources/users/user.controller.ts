@@ -17,7 +17,9 @@ export const register = async (
       role,
     });
 
-    res.status(201).json({ success: true, data: user });
+    const accessToken = user.signWithToken();
+
+    res.status(201).json({ success: true, accessToken });
   } catch (error) {
     next(error);
   }
