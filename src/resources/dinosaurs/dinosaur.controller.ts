@@ -1,6 +1,7 @@
 import { Response, Request, NextFunction } from 'express';
 import Dinosaur from './dinosaur.model';
 import ErrorResponse from '@/utils/error.response';
+import logger from '@/middleware/logger';
 
 export const getDinosaurs = async (
   req: Request,

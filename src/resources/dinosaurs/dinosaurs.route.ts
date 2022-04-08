@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import Route from '@/utils/route.interface';
+import { authMiddleware } from '@/middleware/auth';
 
 import {
   getDinosaurs,
@@ -18,13 +19,16 @@ class DinosaurRoute implements Route {
   }
 
   private initialiseRoutes(): void {
-    this.router.route(`${this.path}`).get(getDinosaurs).post(createDinosaur);
+    this.router
+      .route(`${this.path}`)
+      .get(getDinosaurs)
+      .post(authMiddleware, createDinosaur);
 
     this.router
       .route(`${this.path}/:id`)
       .get(getDinosaur)
-      .put(updateDinosaur)
-      .delete(deleteDinosaur);
+      .put(authMiddleware, updateDinosaur)
+      .delete(authMiddleware, deleteDinosaur);
   }
 }
 
