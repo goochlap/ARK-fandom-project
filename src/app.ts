@@ -5,6 +5,7 @@ import logger from '@/middleware/logger';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import Route from '@/utils/route.interface';
 import errorHandler from '@/middleware/error';
 import mongoDbInfos from './db/url';
@@ -34,6 +35,7 @@ class App {
   private initializeMiddleware(): void {
     this.express.use(morgan('dev'));
     this.express.use(express.json());
+    this.express.use(cookieParser());
     this.express.use(express.urlencoded({ extended: false }));
     this.express.use(cors());
   }

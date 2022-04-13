@@ -22,11 +22,11 @@ const authMiddleware = async (
       jwt.verify(token, process.env.JWT_SECRET)
     );
 
-    const user = await User.findById(payload._id);
+    const user = await User.findById(payload.id);
 
     if (!user) {
       return next(
-        new ErrorResponse(`User with id ${payload._id} not found`, 404)
+        new ErrorResponse(`User with id ${payload.id} not found`, 404)
       );
     }
 
