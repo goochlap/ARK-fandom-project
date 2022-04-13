@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from 'express';
 import ErrorResponse from '@/utils/error.response';
-import User from '@/resources/users/user.model';
-import logger from '@/middleware/logger';
+import UserModel from '@/resources/users/user.model';
+import RequestWithUser from '@/interfaces/requestWithUser.interface';
 
 export const register = async (
   req: Request,
@@ -11,7 +11,7 @@ export const register = async (
   const { name, email, role, password } = req.body;
 
   try {
-    const user = await User.create({
+    const user = await UserModel.create({
       name,
       email,
       password,
@@ -34,7 +34,7 @@ export const login = async (
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email }).select('+password');
+    const user = await UserModel.findOne({ email }).select('+password');
 
     if (!user || !(await user.matchPassword(password))) {
       return next(new ErrorResponse('Invalid credentials', 401));
@@ -42,7 +42,23 @@ export const login = async (
 
     const accessToken = user.signWithToken();
 
-    res.status(201).json({ success: true, accessToken });
+    res.status(200).json({ success: true, accessToken });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const currentUser = async (
+  req: RequestWithUser,
+  res: Response,
+  next: NextFunction
+): Promise<Response | void> => {
+  const id = req.user?._id;
+
+  try {
+    const user = await UserModel.findById(id);
+
+    res.status(200).json({ success: true, user });
   } catch (error) {
     next(error);
   }
