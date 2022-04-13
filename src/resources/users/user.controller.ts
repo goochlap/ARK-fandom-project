@@ -45,6 +45,18 @@ export const login = async (
   }
 };
 
+export const logout = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<Response | void> => {
+  try {
+    res.clearCookie('token').send({ success: true, message: 'cookie cleared' });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const currentUser = async (
   req: RequestWithUser,
   res: Response,

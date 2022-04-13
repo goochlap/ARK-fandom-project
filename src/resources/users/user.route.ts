@@ -6,6 +6,7 @@ import {
   register,
   login,
   currentUser,
+  logout,
 } from '@/resources/users/user.controller';
 
 class UserRoute implements Route {
@@ -19,7 +20,8 @@ class UserRoute implements Route {
   private initialiseRoutes(): void {
     this.router.route(`${this.path}/register`).post(register);
     this.router.route(`${this.path}/login`).post(login);
-    this.router.route(`${this.path}/me`).post(authMiddleware, currentUser);
+    this.router.route(`${this.path}/me`).get(authMiddleware, currentUser);
+    this.router.route(`${this.path}/logout`).get(logout);
   }
 }
 
