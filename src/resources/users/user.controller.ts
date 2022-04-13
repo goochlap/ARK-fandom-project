@@ -2,6 +2,7 @@ import { Response, Request, NextFunction } from 'express';
 import ErrorResponse from '@/utils/error.response';
 import UserModel from '@/resources/users/user.model';
 import RequestWithUser from '@/interfaces/requestWithUser.interface';
+import User from './user.interface';
 
 export const register = async (
   req: Request,
@@ -18,9 +19,7 @@ export const register = async (
       role,
     });
 
-    const accessToken = user.signWithToken();
-
-    res.status(201).json({ success: true, accessToken });
+    sendTokenResponse(user, 201, res);
   } catch (error) {
     next(error);
   }
@@ -40,9 +39,7 @@ export const login = async (
       return next(new ErrorResponse('Invalid credentials', 401));
     }
 
-    const accessToken = user.signWithToken();
-
-    res.status(200).json({ success: true, accessToken });
+    sendTokenResponse(user, 200, res);
   } catch (error) {
     next(error);
   }
@@ -62,4 +59,22 @@ export const currentUser = async (
   } catch (error) {
     next(error);
   }
+};
+
+const sendTokenResponse = (
+  user: User,
+  status: number,
+  res: Response
+): Response | void => {
+  const accessToken = user.signWithToken();
+
+  const options = {
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    httpOnly: true,
+  };
+
+  res
+    .status(status)
+    .cookie('token', accessToken, options)
+    .json({ succes: true, accessToken });
 };
