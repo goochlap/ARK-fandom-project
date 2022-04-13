@@ -88,5 +88,5 @@ const sendTokenResponse = (
   res
     .status(status)
     .cookie('token', accessToken, options)
-    .json({ succes: true, accessToken });
+    .json({ success: true, accessToken });
 };

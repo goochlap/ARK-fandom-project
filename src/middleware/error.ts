@@ -13,13 +13,12 @@ const errorHandler = (
   type errorType = {
     name: string;
     message: string;
-    stack?: string | undefined;
-    status: number;
+    stack?: string;
+    status?: number;
   };
 
   let error: errorType = {
     ...err,
-    status: 0,
   };
 
   error.message = err.message;

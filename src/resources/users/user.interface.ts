@@ -6,9 +6,9 @@ export default interface User {
   email: string;
   role: string;
   password: string;
-  resetPasswordToken: string;
-  resetPasswordExpire: Date;
-  createdAt: Date;
+  resetPasswordToken?: string;
+  resetPasswordExpire?: Date;
+  createdAt?: Date;
 
   matchPassword(password: string): Promise<Error | boolean>;
   signWithToken(): string;

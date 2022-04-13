@@ -1,6 +1,7 @@
 import { Types } from 'mongoose';
+import Dinosaur from '../../src/resources/dinosaurs/dinosaur.interface';
 
-class DinosaurTest {
+class DinosaurTest implements Dinosaur {
   _id: Types.ObjectId | string;
   name: string;
   description: string;

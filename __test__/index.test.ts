@@ -1,6 +1,5 @@
 import request from 'supertest';
 import { config } from 'dotenv';
-import logger from '../src/middleware/logger';
 import api from './utils/api';
 import { initializeDatabase, dropDatabase } from './utils/db';
 

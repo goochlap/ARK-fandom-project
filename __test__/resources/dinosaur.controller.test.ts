@@ -1,14 +1,28 @@
 import request from 'supertest';
 import api from '../utils/api';
-import Dinosaur from '../../src/resources/dinosaurs/dinosaur.interface';
 import { DinosaurTest } from '../data/dinosaurs';
+import { userTest } from '../data/users';
 
 describe('Dinosaur controller flow', () => {
-  let dinosaurTest: Dinosaur = new DinosaurTest('Diplodocus');
+  let accessToken: string;
+  let dinosaurTest = new DinosaurTest('Diplodocus');
+
+  it('Should register a new user', async () => {
+    const response = await request(api)
+      .post('/users/register')
+      .send(userTest)
+      .expect('Content-Type', /json/)
+      .expect(201);
+
+    expect(response.body.success).toBe(true);
+
+    accessToken = response.body.accessToken;
+  });
 
   it('Should create a Dinosaur', async () => {
     const response = await request(api)
       .post('/dinosaurs')
+      .set('Authorization', `Bearer ${accessToken}`)
       .send(dinosaurTest)
       .expect('Content-Type', /json/)
       .expect(201);
@@ -47,6 +61,7 @@ describe('Dinosaur controller flow', () => {
 
     const response = await request(api)
       .put(`/dinosaurs/${dinosaurTest._id}`)
+      .set('Authorization', `Bearer ${accessToken}`)
       .send(dinosaurTest);
 
     expect(response.status).toEqual(200);
@@ -58,9 +73,9 @@ describe('Dinosaur controller flow', () => {
   });
 
   it('Should delete a dinosaur by ID', async () => {
-    const response = await request(api).delete(
-      `/dinosaurs/${dinosaurTest._id}`
-    );
+    const response = await request(api)
+      .delete(`/dinosaurs/${dinosaurTest._id}`)
+      .set('Authorization', `Bearer ${accessToken}`);
 
     expect(response.status).toEqual(204);
   });

@@ -34,7 +34,7 @@ const authMiddleware = async (
 
     next();
   } catch (error) {
-    new ErrorResponse('Unauthorized to access this route', 401);
+    return next(new ErrorResponse('Unauthorized to access this route', 401));
   }
 };
 

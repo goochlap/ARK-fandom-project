@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from 'express';
 import Dinosaur from './dinosaur.model';
 import ErrorResponse from '@/utils/error.response';
-import logger from '@/middleware/logger';
+import RequestWithUser from '@/interfaces/requestWithUser.interface';
 
 export const getDinosaurs = async (
   req: Request,
@@ -38,7 +38,7 @@ export const getDinosaur = async (
 };
 
 export const createDinosaur = async (
-  req: Request,
+  req: RequestWithUser,
   res: Response,
   next: NextFunction
 ): Promise<Response | void> => {

@@ -1,3 +1,3 @@
-const api: string = `http://localhost:${process.env.PORT || 3000}/api`;
+const api: string = `http://localhost:${process.env.PORT || 4000}/api`;
 
 export default api;
