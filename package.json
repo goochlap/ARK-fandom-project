@@ -54,6 +54,7 @@
     "@/resources": "dist/resources",
     "@/utils": "dist/utils",
     "@/middleware": "dist/middleware",
-    "@/db": "dist/db"
+    "@/db": "dist/db",
+    "@/interfaces": "dist/interfaces"
   }
 }
