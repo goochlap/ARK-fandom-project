@@ -35,7 +35,7 @@ export const login = async (
   try {
     const user = await UserModel.findOne({ email }).select('+password');
 
-    if (!user || !(await user.matchPassword(password))) {
+    if (!user || !(await user.matchPassword!(password))) {
       return next(new ErrorResponse('Invalid credentials', 401));
     }
 
@@ -78,7 +78,7 @@ const sendTokenResponse = (
   status: number,
   res: Response
 ): Response | void => {
-  const accessToken = user.signWithToken();
+  const accessToken = user.signWithToken!();
 
   const options = {
     maxAge: 1000 * 60 * 60 * 24 * 7,

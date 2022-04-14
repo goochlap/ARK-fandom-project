@@ -2,6 +2,10 @@ import 'module-alias/register';
 import 'dotenv/config';
 import { MongoClient } from 'mongodb';
 import logger from '@/middleware/logger';
+
+import User from '@/resources/users/user.interface';
+import Dinosaur from '@/resources/dinosaurs/dinosaur.interface';
+
 import mongoDbInfos from '@/db/url';
 import { users, dinosaurs } from './data';
 
@@ -18,8 +22,8 @@ const importData = async (): Promise<void> => {
     await db.collection('dinosaurs').drop();
     logger.info('DB cleaned');
 
-    await db.collection('users').insertMany(users);
-    await db.collection('dinosaurs').insertMany(dinosaurs);
+    await db.collection<User>('users').insertMany(users);
+    await db.collection<Dinosaur>('dinosaurs').insertMany(dinosaurs);
     logger.info('Data imported in DB');
   } catch (error) {
     logger.error(error);

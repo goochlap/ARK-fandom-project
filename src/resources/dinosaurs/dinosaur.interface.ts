@@ -1,7 +1,7 @@
 import { Types } from 'mongoose';
 
 export default interface Dinosaur {
-  _id: Types.ObjectId | string;
+  _id?: Types.ObjectId | string;
   name: string;
   description: string;
   diet: string;
@@ -9,5 +9,5 @@ export default interface Dinosaur {
   tameable: boolean;
   rideable: boolean;
   appearance: string;
-  user: Types.ObjectId;
+  user: Types.ObjectId | object;
 }
