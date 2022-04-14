@@ -9,7 +9,8 @@
     "postinstall": "rm -rf dist",
     "build": "npm run postinstall && tsc && tsc-alias",
     "start:test": "jest --verbose",
-    "test": "cross-env NODE_ENV=test PORT=4000 start-server-and-test start 4000/api/check start:test"
+    "test": "cross-env NODE_ENV=test PORT=4000 start-server-and-test start 4000/api/check start:test",
+    "db:seed": "node dist/db/seeder.js"
   },
   "author": "",
   "license": "ISC",
