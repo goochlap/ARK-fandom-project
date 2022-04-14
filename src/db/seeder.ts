@@ -3,7 +3,7 @@ import 'dotenv/config';
 import { MongoClient } from 'mongodb';
 import logger from '@/middleware/logger';
 import mongoDbInfos from '@/db/url';
-import { users } from './data';
+import { users, dinosaurs } from './data';
 
 const { url } = mongoDbInfos();
 
@@ -15,9 +15,11 @@ const importData = async (): Promise<void> => {
     logger.info('DB connected');
 
     await db.collection('users').drop();
+    await db.collection('dinosaurs').drop();
     logger.info('DB cleaned');
 
     await db.collection('users').insertMany(users);
+    await db.collection('dinosaurs').insertMany(dinosaurs);
     logger.info('Data imported in DB');
   } catch (error) {
     logger.error(error);

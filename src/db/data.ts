@@ -27,4 +27,29 @@ const users = [
   },
 ];
 
-export { users };
+const dinosaurs = [
+  {
+    name: 'T-rex',
+    description:
+      "Tyrannosaurus rex, whose name means king of the tyrant lizards, was built to rule. This dinosaur's muscular body stretched as long as 40 feet—about the size of a school bus—from its snout to the tip of its powerful tail. Weighing up to eight tons, T. rex stomped headfirst across its territory on two strong legs.",
+    diet: 'Carnivore',
+    temperament: 'aggresive',
+    tameable: true,
+    rideable: true,
+    appearance: 'image/t-rex.png',
+    user: users[0],
+  },
+  {
+    name: 'Diplodocus',
+    description:
+      'Diplodocus is among the most easily identifiable dinosaurs, with its typical sauropod shape, long neck and tail, and four sturdy legs.',
+    diet: 'Herbivore',
+    temperament: 'naive',
+    tameable: true,
+    rideable: true,
+    appearance: 'image/diplodocus.png',
+    user: users[1],
+  },
+];
+
+export { users, dinosaurs };
