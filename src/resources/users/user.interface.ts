@@ -10,6 +10,6 @@ export default interface User {
   resetPasswordExpire?: Date;
   createdAt?: Date;
 
-  matchPassword(password: string): Promise<Error | boolean>;
-  signWithToken(): string;
+  matchPassword?(password: string): Promise<Error | boolean>;
+  signWithToken?(): string;
 }

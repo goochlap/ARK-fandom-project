@@ -27,4 +27,7 @@ $ npm run dev
 
 # run tests
 $ npm run test
+
+# to import data into the development db
+npm run db:seed
 ```

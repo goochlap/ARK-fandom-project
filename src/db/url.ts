@@ -3,7 +3,7 @@ import logger from '@/middleware/logger';
 
 config();
 
-const mongoDbInfos = (): { url?: string; dbName?: string } => {
+const mongoDbInfos = (): { url: string; dbName?: string } => {
   const {
     NODE_ENV,
     MONGODB_URI_DEVELOPMENT,
