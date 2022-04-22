@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
+
+// FONTS
+$headers-font: 'Montserrat', sans-serif;
+$body-font: 'Source Sans Pro', sans-serif;
+
+// THEME COLORS
+$primary: #023047;
+$secondary: #8ecae6;
+
+// COLORS
+$black: #000814;
+$blue: #034f9b;
+$green: #0bc63a;
+$gray-light: #ececec;
+$gray-dark: #5e5e5e;
+$red: #cd1f1f;
+$white: #fefefe;
+
+// BORDERS
+$box-shadow-dark: 0 2px 12px 0 $black;
+$box-shadow-light: 0 2px 12px 0 $gray-light;
