@@ -37,6 +37,7 @@ header {
     display: flex;
     align-items: center;
     flex: 1;
+    text-align: center;
 
     h1 {
       margin: auto;
