@@ -1,16 +1,21 @@
 <template>
-  <div class="home">
-    <NavBar />
+  <div class="home container">
+    <BaseInput icon="search" placeholder="Looking for a Dino..." />
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue'
+import BaseInput from '@/components/base/BaseInput.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    NavBar
+    BaseInput
   }
 }
 </script>
+
+<style scoped>
+.home {
+}
+</style>
