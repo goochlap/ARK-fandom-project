@@ -29,7 +29,6 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  position: fixed;
   transition: 0.5s ease all;
   width: 100%;
 

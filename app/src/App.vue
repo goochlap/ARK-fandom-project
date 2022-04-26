@@ -1,6 +1,23 @@
 <template>
-  <router-view />
+  <div id="wrapper">
+    <NavBar />
+    <main class="container">
+      <HomeView />
+    </main>
+  </div>
 </template>
+
+<script>
+import NavBar from '@/components/NavBar.vue'
+import HomeView from '@/views/HomeView.vue'
+
+export default {
+  components: {
+    NavBar,
+    HomeView
+  }
+}
+</script>
 
 <style lang="scss">
 * {
@@ -11,10 +28,26 @@
   padding: 0;
 }
 
-#app {
+#wrapper {
   background: $secondary;
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'header'
+    'main';
+
+  & > header {
+    grid-area: header;
+  }
+
+  & > main {
+    grid-area: main;
+    overflow: auto;
+  }
 
   $base-font-size: 14px;
   $heading-scale: 4;
