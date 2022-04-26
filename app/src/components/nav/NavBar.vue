@@ -1,7 +1,7 @@
 <template>
   <header>
     <div>
-      <router-link to="/"><img src="../assets/images/ark-logo.png" alt="ark-logo" /></router-link>
+      <router-link to="/"><img src="@/assets/images/ark-logo.png" alt="ark-logo" /></router-link>
       <h1>ARK Resources</h1>
     </div>
 
@@ -31,6 +31,7 @@ header {
   padding: 1rem;
   transition: 0.5s ease all;
   width: 100%;
+  z-index: 1;
 
   div {
     display: flex;
@@ -39,7 +40,12 @@ header {
     text-align: center;
 
     h1 {
-      margin: auto;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: -1;
     }
 
     img {

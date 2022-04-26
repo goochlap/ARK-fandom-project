@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue'
+import NavBar from '@/components/nav/NavBar.vue'
 import HomeView from '@/views/HomeView.vue'
 
 export default {
