@@ -1,4 +1,4 @@
-# ARK: Survival Evolved fandom
+# ARK: Survival Evolved
 
 > API used to refer all game components or create them
 
