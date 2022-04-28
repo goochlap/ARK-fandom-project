@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card__dinausor-img">
-      <img class="card__img" :src="require('@/assets/images/dino-pixel.png')" alt="dino-image" />
+      <img class="card__img" :src="require('@/assets/images/diplodocus.webp')" alt="dino-image" />
     </div>
 
     <div class="card__content">
@@ -34,8 +34,15 @@ export default {
   border-radius: 1rem;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
   color: $white;
+  cursor: pointer;
   height: 446px;
+  transition: 0.4s ease;
   width: 344px;
+
+  &:hover {
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+    transform: scale(1.07);
+  }
 }
 
 .card__dinausor-img {
