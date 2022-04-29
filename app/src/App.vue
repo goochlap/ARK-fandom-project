@@ -1,20 +1,19 @@
 <template>
   <div id="wrapper">
     <NavBar />
-    <main class="container">
-      <HomeView />
-    </main>
+    <router-view> </router-view>
+    <TheFooter />
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/nav/NavBar.vue'
-import HomeView from '@/views/HomeView.vue'
+import TheFooter from '@/components/footer/TheFooter.vue'
 
 export default {
   components: {
     NavBar,
-    HomeView
+    TheFooter
   }
 }
 </script>
@@ -30,15 +29,16 @@ export default {
 
 #wrapper {
   background: $secondary;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     'header'
-    'main';
+    'main'
+    'footer';
 
   & > header {
     grid-area: header;
@@ -46,7 +46,12 @@ export default {
 
   & > main {
     grid-area: main;
+    grid-row-start: 2;
     overflow: auto;
+  }
+
+  & footer {
+    grid-area: footer;
   }
 
   $base-font-size: 14px;
