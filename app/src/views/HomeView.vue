@@ -11,6 +11,7 @@
       <CardDinosaur />
       <CardDinosaur />
       <CardDinosaur />
+      <CardDinosaur />
     </section>
   </main>
 </template>

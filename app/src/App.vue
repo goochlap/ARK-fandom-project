@@ -47,6 +47,8 @@ export default {
   & > main {
     grid-area: main;
     grid-row-start: 2;
+    padding-bottom: 8rem;
+    padding-top: 4rem;
     overflow: auto;
   }
 
