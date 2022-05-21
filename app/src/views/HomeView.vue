@@ -1,5 +1,5 @@
 <template>
-  <div class="home container">
+  <main class="home container">
     <BaseInput icon="search" placeholder="Looking for a Dino..." />
 
     <!-- Create BaseSubtitle -->
@@ -9,8 +9,11 @@
       <CardDinosaur />
       <CardDinosaur />
       <CardDinosaur />
+      <CardDinosaur />
+      <CardDinosaur />
+      <CardDinosaur />
     </section>
-  </div>
+  </main>
 </template>
 
 <script>

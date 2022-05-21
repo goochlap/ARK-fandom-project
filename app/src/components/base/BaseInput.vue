@@ -68,7 +68,7 @@ export default {
 
   input {
     background: $gray-light;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 0.5rem;
     box-sizing: border-box;
     color: $black;
@@ -77,7 +77,9 @@ export default {
     text-align: center;
     width: 100%;
 
-    &:focus {
+    &:focus,
+    &:hover,
+    &:active {
       outline: none;
       border: 1px solid rgb(57, 98, 136);
       box-shadow: 0 0 6px $blue;
